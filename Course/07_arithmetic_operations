@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+# a=10
+# b=20
+# echo $a+$b      not working showing 10+20 
+# so 
+a=10 
+b=20
+# let result=$a\*$b
+# let resultm=$a-$b
+# echo "$result"
+# echo "$resultm"
+
+# here we don't need \* for multiply simply used *
+echo "$(($a*$b))"
+echo "$(($a+$b))"

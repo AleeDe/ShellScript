@@ -1,0 +1,29 @@
+#!/bin/zsh
+
+# echo "Enter Your Age"
+# read age
+# if [[ $age -ge 18 ]]        # -eg for equal to
+# then                        # -ge for >=
+#     echo "You can Drive"    # -le for <=
+# else                        # -ne for !=
+#     echo "You are under age" # -gt >  #-lt <
+# fi
+
+
+echo "Enter Your marks"
+read marks
+if [[ $marks -ge 80 ]]
+then
+    echo "A*"
+elif [[ $marks -ge 70 && $marks -lt 80 ]]
+then
+    echo "A"
+elif [[ $marks -ge 60 && $marks -lt 70 ]]
+then
+    echo "B"
+elif [[ $marks -ge 50 && $marks -lt 60 ]]
+then
+    echo "C"
+else
+    echo "Fail"
+fi

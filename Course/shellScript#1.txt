@@ -1,0 +1,443 @@
+There are differnt types of shell like 
+1) bash
+2) sh
+3)zsh
+etc
+
+how we check my shell type 
+echo $0   //is used to check the shell type of my shell 
+I have zsh shell script used
+
+
+#!/bin/bash   // this line also called " shebang "
+where we tell the compailaar which shell script is used
+it is not mandotarty
+
+
+how we run script 
+make sure script has execute permission rwx
+check file permission ls -ltr or ls -lt
+then
+./file.sh
+zsh or bash file name
+
+
+comments in shell script
+
+# dasdasdasdas   //single line comment
+<<comment
+    multiline comments
+comment
+
+this is the way of multiline comment
+
+
+
+variables
+
+name="Muhammad Ali"
+age=18
+
+declaration same hona chay nay space na ho warna error aye gha
+
+echo "Name: $name and age is $age" 
+
+
+myArray=(1 2.2 hello "hey man")
+# space spreated values
+# and also we can provide diffent types of datatype
+#index start from 1 not from 0 in zsh 
+# echo "${myArray[1]}"
+# echo "${myArray[2]}"
+# echo "${myArray[3]}"
+# echo "${myArray[4]}"
+
+# all the value in array 
+# echo "All the value of array are\n ${myArray[*]}" 
+
+# howe to get the length of the array?
+# echo "Length of array is ${#myArray[*]}"
+# simple using # before the name of the array provide the length of array
+
+# how we get specfic value 
+# echo "value from index 2-3 ${myArray[*]:2:2}"
+# # in this ${myArray[*]:starting-from:how many  value you need}
+
+# # how  to update an array
+# myArray+=("update1" 222 3333)
+# echo "$myArray[*]"
+
+# key value pair in  Array
+
+declare -A myArray
+myArray=([name]=Ali [age]=28 [city]=Paris)
+echo "$myArray[*]"
+echo "Name is ${myArray[name]}"
+echo "Age is ${myArray[age]}"
+echo "City is ${myArray[city]}"
+
+#!/bin/zsh
+
+# String Operations
+
+myvalue="Hello World"
+# echo "${#myvalue}"
+# # by simple adding # before the variable name give the length of myvalue
+# echo "${(L)myvalue}"
+# echo "${(U)myvalue}"
+
+# replace 
+
+# echo "${myvalue/Hello/Hi}"
+# ${variablename/whichword/replaaceword}
+# slice
+echo "${myvalue:2:5}"
+# ${variablename:from:howmany word need}
+
+
+
+#!/bin/zsh
+# read name
+# echo "name: $name"
+
+# echo "What is Your name"
+# read name
+# echo "name: $name"
+
+# read -p "Your name " name
+# echo "name: $name"        this command is not valid in zsh 
+
+
+
+#!/bin/zsh
+
+# a=10
+# b=20
+# echo $a+$b      not working showing 10+20 
+# so 
+a=10 
+b=20
+# let result=$a\*$b
+# let resultm=$a-$b
+# echo "$result"
+# echo "$resultm"
+
+# here we don't need \* for multiply simply used *
+echo "$(($a*$b))"
+echo "$(($a+$b))"
+
+
+#!/bin/zsh
+
+# echo "Enter Your Age"
+# read age
+# if [[ $age -ge 18 ]]        # -eg for equal to
+# then                        # -ge for >=
+#     echo "You can Drive"    # -le for <=
+# else                        # -ne for !=
+#     echo "You are under age" # -gt >  #-lt <
+# fi
+
+
+echo "Enter Your marks"
+read marks
+if [[ $marks -ge 80 ]]
+then
+    echo "A*"
+elif [[ $marks -ge 70 && $marks -lt 80 ]]
+then
+    echo "A"
+elif [[ $marks -ge 60 && $marks -lt 70 ]]
+then
+    echo "B"
+elif [[ $marks -ge 50 && $marks -lt 60 ]]
+then
+    echo "C"
+else
+    echo "Fail"
+fi
+
+
+
+#!/bin/bash
+
+echo "Choose the Operator by pressing number\n1)+\n2)-\n3)*\n4)/"
+read choose
+
+echo "Enter your 1 number"
+read num1
+echo "Enter your 2 number"
+read num2
+
+case $choose in 
+    1) echo "$((num1+num2))";;
+    2) echo "$((num1-num2))";;
+    3) echo "$((num1*num2))";;
+    4) echo "$((num1/num2))";;
+    *) echo "Invalid Option"
+esac
+
+
+#!/bin/zsh
+age=19
+# ternaryOperator
+[[ $age -ge 18 ]] && echo "Adult" || echo "Minor"
+
+
+
+#!/bin/bash
+
+# for i in 1 2 3 4 5 6 7 8 9 10
+# do 
+#     echo "Number $i"
+# done
+
+# for name in Muhammad_Ali Muhammad_Raza Muhammad_Sadiq
+# do
+#     echo "Name: $name"
+# done
+
+# for i in {1..100}
+# do
+#     echo "$i"
+# done
+
+# For Loop with file
+
+# file="name.txt"
+# for name in $(cat $file)
+# do 
+#     echo "Name: $name"
+# done
+
+# city=(Karachi Islamabad Lahore Multan Quetta Skardu Hussainabad)
+# for index in {1..${#city[*]}}
+# do
+#     echo "${city[index]}"
+# done
+# for (( i=1;i <= ${#city[*]};i++ ))
+# do
+#     echo "${city[$i]}"
+# done
+
+#!/bin/zsh
+# count=0
+# num=10
+
+# while [[ $count -le $num ]]
+# do
+#     echo "$count"
+#     let count++
+# done
+
+# note [[]] is kay saat -ge like relation operator use hotay hay 
+# (()) kay saat normal wala like c may jo used hota tha
+
+
+#!/bin/zsh
+# oppsote to while 
+
+a=10
+until [[ $a -eq -5 ]]
+do
+    echo "$a"
+    a=$((a-1))
+done
+
+
+#!/bin/zsh
+while true
+do
+    echo "hi"
+    sleep 5s        
+done
+
+
+
+#!/bin/zsh
+
+# while read myvar
+# do
+#     echo $myvar
+# done < name.txt
+
+# make sure that IFS iun capital letter
+# while IFS="," read f1 f2 f3
+# do
+#     echo "Name: $f1 Age: $f2 City: $f3"
+# done < bio.txt
+# it read also 1 colum to avoid it 
+
+# awk target the row
+# cat bio.txt | awk 'NR!=1' | while IFS="," read f1 f2 f3
+# do
+#     echo "Name: $f1 Age: $f2 City: $f3"
+# done < bio.txt
+
+
+
+
+#!/bin/zsh
+# myfun(){
+#     echo "Hello World"
+# }
+# myfun  #function calling
+
+
+sum(){
+    num1=$1
+    local num2=$2
+    echo $((num1+num2))
+}
+sum 12 11
+
+# Task 
+
+sum()
+{
+    nums1=$1
+    nums2=$2
+    echo $(($nums1+$nums2))
+}
+sub()
+{
+    nums1=$1
+    nums2=$2
+    echo $(($nums1-$nums2))
+}
+mul()
+{
+    nums1=$1
+    nums2=$2
+    echo $(($nums1*$nums2))
+}
+div()
+{
+    nums1=$1
+    nums2=$2
+    echo $(($nums1/$nums2))
+}
+
+echo "Choose the Operator by pressing number\n1)+\n2)-\n3)*\n4)/"
+read choose
+echo "Enter your 1 number"
+read num1
+echo "Enter your 2 number"
+read num2
+
+case $choose in 
+    1) sum num1 num2;;
+    2) sub num1 num2;;
+    3) mul num1 num2;;
+    4) div num1 num2;;
+    *) echo "Invalid Option"
+esac
+
+
+#!/bin/zsh
+
+# how we aaccess the arguments
+
+# echo "First argument is $1"
+# echo "Second argument is $2"
+
+# echo "All the arguments are : $@"
+# echo "Number of argument are : $#"
+
+# we can provide value from run-time by giving there value after it
+# zsh filename argu1 argu2
+
+# for loop to access the value from arguments
+
+# for filename in $@
+# do 
+#     echo "Coping File - $filename"
+# done
+
+# shift argument
+# echo "Creating user"
+# echo "Username is $1"
+# shift 
+# echo "Decription is $@"
+# working with zsh 17_argumentsinScript.sh Ali "Test user for QA Team"
+# with shift 
+# zsh 17_argumentsinScript.sh Ali Test user for QA Team  
+
+
+
+#!/bin/zsh
+
+echo "Enter the site name"
+read sitename
+
+echo "Site that you check name is $sitename"
+
+ping -c 1 $sitename
+if (($? == 0))
+then
+    echo "$sitename is working Properly"
+else
+    echo "$sitename in not Working"
+fi
+
+
+
+#!/bin/zsh
+
+# echo $RANDOM        # Must be capital letter
+# echo $RANDOM 
+
+# echo $UID              # check weather user is root or not
+# the value of $UID of root user is 0
+
+# Dice Project
+
+num=$(( $RANDOM % 6 + 1))
+echo $num
+
+
+
+
+#!/bin/zsh
+# ReDirection > or >>
+# ls > all_files.txt
+# date >> all_files.txt   # putting value in file
+# by this we make a log file 
+
+# ping -c 1 www.google.com > all_files.txt
+# by this we direct Store the result in file by this 
+# and our termial is clear not showing result in termail give all content in file 
+# date > all_files.txt
+
+# cd /root &> /dev/null
+# ping -c 1 www.google.com &> /dev/null
+
+# print the name of script ${0}
+# echo "The name of the script is: ${0}"
+
+
+
+#!/bin/zsh
+
+# #exmaple of logging
+
+# logger "This is log from ${0}"
+
+# debugging the script
+# set -x  show each statement line by line
+# set -e  wwhen the command is fail so exit from the script
+
+# set -e  # it's stop the script where command is fail
+# pwd
+# date
+# cd /roo
+# hostname
+
+# for ((i=0;i<10;i++))
+# do 
+#     echo $i
+#     sleep 5s
+# done
+# it take our termail and we are waiting for this end 
+# so simple by instead runing with zsh we run with nohup so it automattically run in baclground not in temrial
+# like this nohup ./21_logger.sh &

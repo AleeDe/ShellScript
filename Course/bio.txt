@@ -1,0 +1,3 @@
+Ali,18,karachi
+Raza,30,Karachi
+Zaheer,19,Karachi
